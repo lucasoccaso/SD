@@ -15,7 +15,7 @@ from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 
-@app.route('/Teste')
+@app.route('/Teste', methods=['GET', 'POST'])
 def Teste():
     resposta = 'funciona'
     return resposta

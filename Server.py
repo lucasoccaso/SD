@@ -17,5 +17,6 @@ app = Flask(__name__)
 
 @app.route('/Teste', methods=['GET', 'POST'])
 def Teste():
-    resposta = 'funciona'
+    data = request.files['CPU']
+    resposta = data
     return resposta

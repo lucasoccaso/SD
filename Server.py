@@ -33,12 +33,38 @@ def Divulga():
             'ram': data['ram'],
             'disco': data['disco'],
             'custo': data['custo'],  
-            'disponibilidade': 'True',
+            'vm': data['vm']
         })
     return 'Dados do provedor divulgados'
 
 
 @app.route('/Consulta', methods=['GET', 'POST'])
 def Consulta():
+    data = request.get_json()
+    busca = mongo.db['provedores'].find(
+        {
+            'vcpu':{'$gte': data['CPU']},
+            'ram': {'$gte': data['RAM']},
+            'disco': {'$gte': data['DISCO']}
+        }
+    )
 
-    return '1'
+    if busca['vm'] > 0:
+        mongo.db['provedores'].update_one(
+            {
+                'provedor_id': busca['provedor_id']
+            }, {'$set': {'vm': busca['vm']-1}}
+            
+        )
+        return busca['provedor_id']
+    else:
+        return 'indisponivel'
+
+@app.route('/Libera', methods=['GET', 'POST'])
+def Libera():
+    data = request.get_json()
+    mongo.db['provedores'].update_one(
+            {
+                'provedor_id': data['provedor_id']
+            }, {'$set': {'vm': busca['vm']+1}}
+        )

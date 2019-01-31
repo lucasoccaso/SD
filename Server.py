@@ -40,10 +40,5 @@ def Divulga():
 
 @app.route('/Consulta', methods=['GET', 'POST'])
 def Consulta():
-    with open('db.txt', 'r') as arquivo:
-        json_data = arquivo.read() 
-    arquivo.close()
-
-    print (json_data)
 
     return '1'

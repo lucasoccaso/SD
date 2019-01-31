@@ -22,22 +22,11 @@ app = Flask(__name__)
 
 @app.route('/Divulga', methods=['GET', 'POST'])
 def Divulga():
-    provedor_info = request.form
-    json_provedor = json.dumps(provedor_info)
-
-    with open('db.txt', 'a') as arquivo:
-        json.dump(json_provedor, arquivo)
-    arquivo.close()
-
+    
     return 'Dados do provedor divulgados'
 
 
 @app.route('/Consulta', methods=['GET', 'POST'])
 def Consulta():
-    with open('db.txt', 'r') as arquivo:
-        json_data = arquivo.read() 
-    arquivo.close()
-
-    print (json_data)
 
     return '1'

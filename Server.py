@@ -9,11 +9,9 @@
 '''
 
 import time
-import json
 import os
 from flask import Flask, request, redirect, url_for, current_app, send_from_directory
 from werkzeug.utils import secure_filename
-from flask_pymongo import PyMongo
 
 
 
